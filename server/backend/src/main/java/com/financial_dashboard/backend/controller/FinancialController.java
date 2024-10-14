@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.io.File;
+import java.io.InputStream;
 import java.util.Map;
 
 @RestController
@@ -18,10 +18,11 @@ public class FinancialController {
 
         ObjectMapper mapper = new ObjectMapper();
         Resource resource = new ClassPathResource("balances.json");
-        File account_data = resource.getFile();
 
-        Map<String, Object> balances = mapper.readValue(account_data,Map.class);
-
-        return balances;
+        // Read the resource as an InputStream instead of File
+        try (InputStream inputStream = resource.getInputStream()) {
+            Map<String, Object> balances = mapper.readValue(inputStream, Map.class);
+            return balances;
+        }
     }
 }

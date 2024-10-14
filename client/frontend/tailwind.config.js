@@ -4,7 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brown: "#663939",
+        violet: {
+          DEFAULT: "#5a189a",
+          100: "#9d4edd",
+          200: "#e0aaff",
+        },
         white: "#FFFFFF",
         cream: "#E2DDC0",
         black: "#000000",
@@ -17,4 +21,3 @@ module.exports = {
   },
   plugins: [],
 };
-

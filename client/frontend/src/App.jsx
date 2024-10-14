@@ -13,7 +13,9 @@ function App() {
 
   const fetchAccounts = async () => {
     try {
-      const response = await fetch("http://localhost:8080/balances"); // Replace with your API endpoint
+      const response = await fetch(
+        "https://financial-dashboard-5g11.onrender.com/balances"
+      ); // Replace with your API endpoint
       if (!response.ok) {
         throw new Error("Failed to fetch accounts");
       }

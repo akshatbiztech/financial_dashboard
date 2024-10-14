@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face{
+  font-family: "Tiempos-Bold";
+  src: local("Tiempos-Bold")
+  url('./assets/fonts/TiemposHeadline-Bold.otf')
+}
+
+@font-face{
+  font-family: "Avenir-Medium";
+  src: local("Avenir-Medium")
+  url('./assets/fonts/AvenirLTStd-Medium.otf')
+}

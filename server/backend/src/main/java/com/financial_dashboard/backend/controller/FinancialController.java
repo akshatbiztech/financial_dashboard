@@ -15,7 +15,7 @@ public class FinancialController {
     public Map<String, Object> getBalances() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        File account_data = new File("server/backend/src/main/resources/balances.json");
+        File account_data = new File("src/main/resources/balances.json");
 
         Map<String, Object> balances = mapper.readValue(account_data,Map.class);
 

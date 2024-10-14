@@ -15,21 +15,26 @@ function App() {
     try {
       const response = await fetch(
         "https://financial-dashboard-5g11.onrender.com/balances"
-      ); // Replace with your API endpoint
+      ); 
       if (!response.ok) {
         throw new Error("Failed to fetch accounts");
       }
       const data = await response.json();
-      setAccounts(data.accounts); // Assuming the API returns an array of accounts
-      setError(""); // Clear any previous error
+      setAccounts(data.accounts); 
+      setError("");
     } catch (err) {
-      setError("No accounts found."); // Set error message if fetch fails
-      setAccounts([]); // Clear accounts
+      setError("No accounts found."); 
+      setAccounts([]); 
     }
   };
 
   const refreshAccounts = () => {
-    fetchAccounts();
+    const updatedAccounts = accounts.map((account) => ({
+      ...account,
+      balance: account.balance + 100, 
+    }));
+
+    setAccounts(updatedAccounts); 
   };
 
   useEffect(() => {

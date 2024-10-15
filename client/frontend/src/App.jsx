@@ -79,50 +79,45 @@ function App() {
 
   return (
     <div className="bg-gray-200 h-screen flex flex-col">
+      
       {/* Top Half - Green Background */}
       <div className="bg-green text-white p-8 flex flex-col justify-center items-center w-full h-1/2">
         <h1 className="text-[48px] font-tbold text-left mb-4">
           👋🏻 {greeting}, <br /> {WELCOME_MSG}
+          </h1>
+      <div className="bg-green-700 text-white p-8 flex flex-col justify-center items-left w-full h-1/2 ">
+        <h1 className="text-[48px] font-tbold text-left mb-4 ml-[120px]">
+          👋🏻 {greeting}, <br /> Welcome To Your Financial Dashboard
         </h1>
-        <p className="text-[20px] font-amedium text-left">
+        <p className="text-[20px] font-amedium text-left  ml-[120px]">
           {WELCOME_MSG_DESCRIPTION}
         </p>
       </div>
-
+      </div> 
       {/* Bottom Half */}
-      <div className="bg-white p-8 shadow-md w-full h-1/2 flex flex-col">
+      <div className="bg-white p-8 shadow-md w-full  flex flex-col">
         {/* Grid Container */}
-        <div className="w-full grid grid-cols-3 gap-4 min-w-full">
+        {/*Total Balance */}
+        <div className="bg-[#ECF9EB] p-4 shadow-md rounded-[20px] w-[400px] mb-4  ml-[120px] text-center">
+            <h2 className="text-lg font-bold">TOTAL BALANCE</h2>
+            <p className="text-black font-bold text-[24px] mr-2">${accounts.reduce((acc, account) => acc + account.balance, 0).toFixed(2)} <span className="text-black font-bold text-[14px]">CAD</span></p>
+          </div>
+          
+        <div className="w-full grid grid-cols-3 gap-4  ml-[120px] min-w-full">
           {/* Refresh Button  */}
-          <div className="flex flex-col justify-between ml-10">
+          <div className="flex flex-col justify-between ">
             <div></div> {/* Empty space to push content down */}
             <div>
-              <CustomButton
-                title="Refresh"
-                onClick={refreshAccounts}
-              ></CustomButton>
-              <p className="text-sm mt-2 text-left">{REFRESH_BUTTON_MSG}</p>
+              <CustomButton title="Refresh" onClick={refreshAccounts}></CustomButton> {'     \t'}
+              <span className="text-sm mt-2 text-left">{REFRESH_BUTTON_MSG}</span>
             </div>
           </div>
 
-          {/*Total Balance */}
-          <div className="bg-[#ECF9EB] p-4 shadow-md rounded-[20px] w-[300px] mb-4 text-center">
-            <h2 className="text-lg font-bold">TOTAL BALANCE</h2>
-            <p className="text-black font-bold text-[24px] mr-2">
-              $
-              {accounts
-                .reduce((acc, account) => acc + account.balance, 0)
-                .toFixed(2)}{" "}
-              CAD
-            </p>
-          </div>
-
-          {/* Empty third grid cell to maintain 3 columns structure */}
-          <div></div>
+        
         </div>
 
         {/* Accounts */}
-        <div className="w-full mt-10 grid grid-cols-3 gap-4 min-w-full ml-5">
+        <div className="w-full mt-10 grid grid-cols-3 gap-4  min-w-full  ml-[120px]">
           {/* Display Accounts */}
           {accounts.map((account) => (
             <Card key={account.id} account={account} />
@@ -133,6 +128,7 @@ function App() {
         {error && <p className="text-red-500">{error}</p>}
       </div>
     </div>
+         
   );
 }
 

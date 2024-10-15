@@ -19,7 +19,7 @@ function Card({ account }) {
   };
 
   return (
-    <div className="bg-[#ECF9EB] p-4 rounded-[20px] shadow-md w-[300px] mb-4 text-center">
+    <div className="bg-[#DFF5D7] p-4 rounded-[20px] shadow-2xl w-[300px] mb-4 text-center">
       <h2 className="text-lg font-medium text-black">{accountName}</h2>
       <h2 className="text-sm font-light text-gray-500">{accountId}</h2>
       <div className="flex items-center justify-center mt-2">

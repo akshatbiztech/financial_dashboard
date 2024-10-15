@@ -7,9 +7,13 @@ import React, { useEffect, useState } from "react";
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const constants = {
   texts: {
+    WELCOME_MSG: "Welcome To Your Financial Dashboard",
     WELCOME_MSG_DESCRIPTION:
       "This dashboard gives you a clear picture of your account balances and transactions.",
     REFRESH_BUTTON_MSG: "Click Refresh to get the updated account.",
+    MORNING: "Good Morning",
+    AFTERNOON: "Good Afternoon",
+    EVENING: "Good Evening",
   },
   urls: {
     dashboard: {
@@ -24,7 +28,15 @@ function App() {
   const [error, setError] = useState("");
   const [greeting, setGreeting] = useState(""); // State to hold the time-based greeting
 
-  const { WELCOME_MSG_DESCRIPTION, REFRESH_BUTTON_MSG } = constants.texts;
+  const {
+    WELCOME_MSG,
+    MORNING,
+    AFTERNOON,
+    EVENING,
+    WELCOME_MSG_DESCRIPTION,
+    REFRESH_BUTTON_MSG,
+  } = constants.texts;
+
   const { GET_ACCOUNT_BALANCE } = constants.urls.dashboard;
 
   const fetchAccounts = async () => {
@@ -50,11 +62,11 @@ function App() {
   const generateGreeting = () => {
     const currentHour = new Date().getHours(); // Get the current hour in local time zone
     if (currentHour >= 5 && currentHour < 12) {
-      return "Good Morning"; // Morning
+      return MORNING; // Morning
     } else if (currentHour >= 12 && currentHour < 18) {
-      return "Good Afternoon"; // Afternoon
+      return AFTERNOON; // Afternoon
     } else {
-      return "Good Evening"; // Evening
+      return EVENING; // Evening
     }
   };
 
@@ -68,9 +80,9 @@ function App() {
   return (
     <div className="bg-gray-200 h-screen flex flex-col">
       {/* Top Half - Green Background */}
-      <div className="bg-green-700 text-white p-8 flex flex-col justify-center items-center w-full h-1/2">
+      <div className="bg-green text-white p-8 flex flex-col justify-center items-center w-full h-1/2">
         <h1 className="text-[48px] font-tbold text-left mb-4">
-          👋🏻 {greeting}, <br /> Welcome To Your Financial Dashboard
+          👋🏻 {greeting}, <br /> {WELCOME_MSG}
         </h1>
         <p className="text-[20px] font-amedium text-left">
           {WELCOME_MSG_DESCRIPTION}
@@ -82,10 +94,13 @@ function App() {
         {/* Grid Container */}
         <div className="w-full grid grid-cols-3 gap-4 min-w-full">
           {/* Refresh Button  */}
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between ml-10">
             <div></div> {/* Empty space to push content down */}
             <div>
-              <CustomButton title="Refresh" onClick={refreshAccounts}></CustomButton>
+              <CustomButton
+                title="Refresh"
+                onClick={refreshAccounts}
+              ></CustomButton>
               <p className="text-sm mt-2 text-left">{REFRESH_BUTTON_MSG}</p>
             </div>
           </div>
@@ -93,7 +108,13 @@ function App() {
           {/*Total Balance */}
           <div className="bg-[#ECF9EB] p-4 shadow-md rounded-[20px] w-[300px] mb-4 text-center">
             <h2 className="text-lg font-bold">TOTAL BALANCE</h2>
-            <p className="text-black font-bold text-[24px] mr-2">${accounts.reduce((acc, account) => acc + account.balance, 0).toFixed(2)} CAD</p>
+            <p className="text-black font-bold text-[24px] mr-2">
+              $
+              {accounts
+                .reduce((acc, account) => acc + account.balance, 0)
+                .toFixed(2)}{" "}
+              CAD
+            </p>
           </div>
 
           {/* Empty third grid cell to maintain 3 columns structure */}
@@ -101,7 +122,7 @@ function App() {
         </div>
 
         {/* Accounts */}
-        <div className="w-full mt-10 grid grid-cols-3 gap-4 min-w-full">
+        <div className="w-full mt-10 grid grid-cols-3 gap-4 min-w-full ml-5">
           {/* Display Accounts */}
           {accounts.map((account) => (
             <Card key={account.id} account={account} />

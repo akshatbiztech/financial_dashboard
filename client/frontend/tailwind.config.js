@@ -12,8 +12,9 @@ module.exports = {
         white: "#FFFFFF",
         cream: "#E2DDC0",
         black: "#000000",
-        'green-700': '#127A1A',
-        'light-green': 'ECF9EB'
+        green: {
+          DEFAULT: "#1D7424",
+        },
       },
       fontFamily: {
         tbold: ["Tiempos-Bold"],

@@ -8,8 +8,8 @@ import React, { useEffect, useState } from "react";
 const constants = {
   texts: {
     WELCOME_MSG_DESCRIPTION:
-      " This dashboard gives you a clear picture of your account balances and transactions.",
-    REFRESH_BUTTON_MSG: "Use Refresh to get the updated account.",
+      "This dashboard gives you a clear picture of your account balances and transactions.",
+    REFRESH_BUTTON_MSG: "Click Refresh to get the updated account.",
   },
   urls: {
     dashboard: {
@@ -22,6 +22,7 @@ const constants = {
 function App() {
   const [accounts, setAccounts] = useState([]);
   const [error, setError] = useState("");
+  const [greeting, setGreeting] = useState(""); // State to hold the time-based greeting
 
   const { WELCOME_MSG_DESCRIPTION, REFRESH_BUTTON_MSG } = constants.texts;
   const { GET_ACCOUNT_BALANCE } = constants.urls.dashboard;
@@ -42,25 +43,34 @@ function App() {
   };
 
   const refreshAccounts = () => {
-    //TO-DO
-    const updatedAccounts = accounts.map((account) => ({
-      ...account,
-      balance: account.balance + 100,
-    }));
-
-    setAccounts(updatedAccounts);
+    fetchAccounts();
   };
 
+  // Function to generate greeting based on the time of day
+  const generateGreeting = () => {
+    const currentHour = new Date().getHours(); // Get the current hour in local time zone
+    if (currentHour >= 5 && currentHour < 12) {
+      return "Good Morning"; // Morning
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return "Good Afternoon"; // Afternoon
+    } else {
+      return "Good Evening"; // Evening
+    }
+  };
+
+  // Use effect to fetch accounts and set the greeting when the component mounts
   useEffect(() => {
     fetchAccounts();
+    const greetingMessage = generateGreeting(); // Generate time-based greeting
+    setGreeting(greetingMessage); // Set greeting
   }, []);
 
   return (
     <div className="bg-gray-200 h-screen flex flex-col">
-      {/* Top Half */}
-      <div className=" bg-violet text-white p-8 flex flex-col justify-center items-center w-full h-1/2">
+      {/* Top Half - Green Background */}
+      <div className="bg-green-700 text-white p-8 flex flex-col justify-center items-center w-full h-1/2">
         <h1 className="text-[48px] font-tbold text-left mb-4">
-          👋 Hola, <br /> Welcome To Your Financial Dashboard
+          👋🏻 {greeting}, <br /> Welcome To Your Financial Dashboard
         </h1>
         <p className="text-[20px] font-amedium text-left">
           {WELCOME_MSG_DESCRIPTION}
@@ -68,18 +78,38 @@ function App() {
       </div>
 
       {/* Bottom Half */}
-      <div className="bg-cream p-8 shadow-md w-full h-1/2 flex flex-col justify-start items-start">
-        <CustomButton title="Refresh" onClick={refreshAccounts}></CustomButton>
-        <p className="text-sm mt-2 ml-2">{REFRESH_BUTTON_MSG}</p>
-        {/* Display Error Message if No Accounts Found */}
-        {error && <p className="text-red-500">{error}</p>}
+      <div className="bg-white p-8 shadow-md w-full h-1/2 flex flex-col">
+        {/* Grid Container */}
+        <div className="w-full grid grid-cols-3 gap-4 min-w-full">
+          {/* Refresh Button  */}
+          <div className="flex flex-col justify-between">
+            <div></div> {/* Empty space to push content down */}
+            <div>
+              <CustomButton title="Refresh" onClick={refreshAccounts}></CustomButton>
+              <p className="text-sm mt-2 text-left">{REFRESH_BUTTON_MSG}</p>
+            </div>
+          </div>
 
-        {/* Display Accounts */}
-        <div className="w-full mt-10 grid grid-cols-3 min-w-full">
+          {/*Total Balance */}
+          <div className="bg-[#ECF9EB] p-4 shadow-md rounded-[20px] w-[300px] mb-4 text-center">
+            <h2 className="text-lg font-bold">TOTAL BALANCE</h2>
+            <p className="text-black font-bold text-[24px] mr-2">${accounts.reduce((acc, account) => acc + account.balance, 0).toFixed(2)} CAD</p>
+          </div>
+
+          {/* Empty third grid cell to maintain 3 columns structure */}
+          <div></div>
+        </div>
+
+        {/* Accounts */}
+        <div className="w-full mt-10 grid grid-cols-3 gap-4 min-w-full">
+          {/* Display Accounts */}
           {accounts.map((account) => (
             <Card key={account.id} account={account} />
           ))}
         </div>
+
+        {/* Display Error Message if No Accounts Found */}
+        {error && <p className="text-red-500">{error}</p>}
       </div>
     </div>
   );

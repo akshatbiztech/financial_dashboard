@@ -19,14 +19,14 @@ function Card({ account }) {
   };
 
   return (
-    <div className="bg-violet p-4 rounded-[26px] shadow-md w-[271px] mb-4">
-      <h2 className="text-lg font-amedium text-white">{accountName}</h2>
-      <h2 className="text-lg font-thin text-white">{accountId}</h2>
-      <div className="flex items-center">
-        <div className="text-white font-medium text-[20px] mr-2">
+    <div className="bg-[#ECF9EB] p-4 rounded-[20px] shadow-md w-[300px] mb-4 text-center">
+      <h2 className="text-lg font-medium text-black">{accountName}</h2>
+      <h2 className="text-sm font-light text-gray-500">{accountId}</h2>
+      <div className="flex items-center justify-center mt-2">
+        <div className="text-black font-bold text-[24px] mr-2">
           $ {getFormattedCurrencyAmount(balance, currency)}
         </div>
-        <div className="text-white font-medium text-[14px]">{currency}</div>
+        <div className="text-black font-bold text-[14px]">{currency}</div>
       </div>
     </div>
   );

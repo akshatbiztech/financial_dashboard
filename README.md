@@ -1,14 +1,27 @@
 # Financial Dashboard
 
+<p align='center'>
+  <img src='Financial Dashboard Screenshot.png' alt='Dashboard' height='400px' >
+</p>
+
+- Live Demo Link: https://invinciblesdashboard.onrender.com/
+
 ## Description
 
 The Financial Dashboard is a web application that provides users with a clear picture of their account balances and transactions. Users can refresh the dashboard to see the latest account details, and it displays a total balance along with individual account balances for savings, checking, and investment accounts.
 
-## Colaborator
+## Usage
+- Upon loading the dashboard, users will see their greeting and the total account balances.
+- Click the "Refresh" button to update the account information.
+
+## Collaborators
 - [Akshat Shah](https://www.connectwithakshat.me/)
 - [Riddhi Sanghvi](https://github.com/riddhinsanghvi/)
 - [Margarita Medinskaia](https://github.com/MarMedinskaia)
 
+## Final Challenge Deliverables
+
+- Link to User Stories, Wireframe & Video files - [Google Drive](https://drive.google.com/drive/folders/1V2CqowmQ50IfglTcZ2JOX8B1WFDAEMd8?usp=sharing)
 
 ## Features
 
@@ -19,10 +32,10 @@ The Financial Dashboard is a web application that provides users with a clear pi
 
 ## Technologies Used
 
-- **Frontend**: React.js
-- **Styling**: Tailwind CSS
-- **Backend**: Java SpringBoot
-- **APIs**: RESTful API
+- **Frontend**: [React.js](https://react.dev/learn)
+- **Styling**: [Tailwind CSS](https://v2.tailwindcss.com/docs)
+- **Backend**: [Java SpringBoot](https://docs.spring.io/spring-boot/index.html)
+- **APIs**: [RESTful API](https://restfulapi.net/)
 
 ## Getting Started
 
@@ -95,7 +108,5 @@ urls: {
 ```
 - [Refer to line 21](https://github.com/akshatbiztech/financial_dashboard/blob/main/client/frontend/src/App.jsx) and replace the link to http://localhost:8080 which is your local SpringBoot server.
 
-## Usage
-- Upon loading the dashboard, users will see their greeting and the total account balances.
-- Click the "Refresh" button to update the account information.
+
 

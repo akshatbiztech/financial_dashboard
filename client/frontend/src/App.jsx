@@ -99,7 +99,10 @@ function App() {
             $
             {accounts
               .reduce((acc, account) => acc + account.balance, 0)
-              .toFixed(2)}{" "}
+              .toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}{" "}
             <span className="text-black font-bold text-[14px]">CAD</span>
           </p>
         </div>

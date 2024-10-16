@@ -13,8 +13,8 @@ module.exports = {
         cream: "#E2DDC0",
         black: "#000000",
         green: {
-          DEFAULT: "#1D7424",
-        },
+          DEFAULT:"#127A1A",
+        }
       },
       fontFamily: {
         tbold: ["Tiempos-Bold"],
